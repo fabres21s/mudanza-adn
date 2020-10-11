@@ -21,7 +21,7 @@ allprojects {
 	project.ext.springdevtools = ["org.springframework.boot:spring-boot-devtools:${springBootVersion}"]
 	project.ext.springbootundertow = ["org.springframework.boot:spring-boot-starter-undertow:${springBootVersion}"]
 	project.ext.springbootjasypt = ['com.github.ulisesbocchio:jasypt-spring-boot-starter:2.1.1']
-
+	
 	project.ext.springtxt = [
 							  	"org.springframework:spring-tx:${springVersion}",
 							  	"org.springframework:spring-context:${springVersion}"
@@ -73,6 +73,7 @@ dependencies {
 	
 	implementation project.ext.springbootundertow
 	implementation project.ext.flyway
+	implementation project.ext.h2
 
 	implementation project(':infraestructura')
 }
