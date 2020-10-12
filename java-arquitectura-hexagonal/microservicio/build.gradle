@@ -39,6 +39,8 @@ allprojects {
 	project.ext.flywaytest = ["org.flywaydb.flyway-test-extensions:flyway-spring-test:5.2.1"]
 
 	project.ext.h2 = ["com.h2database:h2:1.4.194"]
+	
+
 }
 
 buildscript {
@@ -74,8 +76,12 @@ dependencies {
 	implementation project.ext.springbootundertow
 	implementation project.ext.flyway
 	implementation project.ext.h2
+	
 
 	implementation project(':infraestructura')
+	
+
+	
 }
 
 bootJar {
@@ -83,3 +89,5 @@ bootJar {
     baseName = 'mudanza'
     version =  version
 }
+
+

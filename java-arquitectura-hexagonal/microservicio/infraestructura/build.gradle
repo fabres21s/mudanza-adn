@@ -11,6 +11,9 @@ repositories {
 }
 
 dependencies {
+
+
+
 	testImplementation project.ext.springboottest
 	compile project.ext.springbootweb
 	compile project.ext.swagger
@@ -27,6 +30,15 @@ dependencies {
 
 	implementation project(':comun:comun-infraestructura')
 	implementation project(':comun:comun-aplicacion')
+	
+	testImplementation project.ext.h2
+	
+	compileOnly project.ext.lombok
+	annotationProcessor project.ext.lombok
+	
+	testCompileOnly project.ext.lombok
+	testAnnotationProcessor project.ext.lombok
+	
 }
 
 jacocoTestReport {
@@ -41,3 +53,6 @@ jacocoTestReport {
 test {
 	finalizedBy jacocoTestReport
 }
+
+gradle.startParameter.showStacktrace = org.gradle.api.logging.configuration.ShowStacktrace.ALWAYS
+
