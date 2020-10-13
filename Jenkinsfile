@@ -24,30 +24,39 @@ pipeline {
       }
     }
     
-    stage('Compile & Unit Tests') {
-      steps{
-        echo "------------>Unit Tests<------------"
-        sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle test'
+ 
 
-      }
-    }
-
-    stage('Static Code Analysis') {
-      steps{
-        echo '------------>Análisis de código estático<------------'
-        withSonarQubeEnv('Sonar') {
-			sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
-        }
-      }
-    }
-
-    stage('Build') {
-      steps {
-        echo "------------>Build<------------"
-        sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle build -x test'
-        
-      }
-    }  
+	stage('Build project') {
+					    	steps {
+					        	echo "------------>Building project microservicio<------------"
+					            sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle clean'
+					            sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle build'
+								
+								echo "------------>Building project comun<------------"
+					            sh 'gradle --b ./java-arquitectura-hexagonal/comun/build.gradle clean'
+					            sh 'gradle --b ./java-arquitectura-hexagonal/comun/build.gradle build'
+					        }
+					    }
+                        stage('Compile & Unit Tests') {
+                           steps {
+                              echo "--------------->Unit Tests microservicio<--------"
+                              sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle test'
+                              sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle jacocoTestReport'
+							  
+							  echo "--------------->Unit Tests microservicio comun<--------"
+                              sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle test'
+                              sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle jacocoTestReport'
+                           }
+                        }
+                        stage('Static Code Analysys'){
+                           steps {
+                              echo '----------------->Analisis de Código estático<-----------------'
+                              withSonarQubeEnv('Sonar'){
+                                 sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+                              }
+                           }
+                        }
+	
   }
 
   post {
