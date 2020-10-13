@@ -1,5 +1,5 @@
 plugins {
-	id 'org.springframework.boot' version '${springBootVersion}'
+	id 'org.springframework.boot' version '2.1.17.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
 	id 'jacoco'
@@ -54,14 +54,14 @@ allprojects {
 
 }
 
-buildscript {
+/*buildscript {
 	repositories {
 		mavenCentral()
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
-}
+}*/
 
 
 
