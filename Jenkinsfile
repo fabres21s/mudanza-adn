@@ -20,42 +20,42 @@ pipeline {
   stages{
     stage('Checkout') {
       steps{
-        echo "------------>Checkout<------------"
+        echo "------------>Checkout ABC<------------"
       }
     }
-    
- 
 
 	stage('Build project') {
-					    	steps {
-					        	echo "------------>Building project microservicio<------------"
-					            sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle clean'
-					            sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle build'
+		steps {
+			echo "------------>Building project microservicio<------------"
+				sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle clean'
+					sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle build'
 								
-								echo "------------>Building project comun<------------"
-					            sh 'gradle --b ./java-arquitectura-hexagonal/comun/build.gradle clean'
-					            sh 'gradle --b ./java-arquitectura-hexagonal/comun/build.gradle build'
-					        }
-					    }
-                        stage('Compile & Unit Tests') {
-                           steps {
-                              echo "--------------->Unit Tests microservicio<--------"
-                              sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle test'
-                              sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle jacocoTestReport'
-							  
-							  echo "--------------->Unit Tests microservicio comun<--------"
-                              sh 'gradle --b ./java-arquitectura-hexagonal/comun/build.gradle test'
-                              sh 'gradle --b ./java-arquitectura-hexagonal/comun/build.gradle jacocoTestReport'
-                           }
-                        }
-                        stage('Static Code Analysys'){
-                           steps {
-                              echo '----------------->Analisis de Código estático<-----------------'
-                              withSonarQubeEnv('Sonar'){
-                                 sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
-                              }
-                           }
-                        }
+					echo "------------>Building project comun<------------"
+					sh 'gradle --b ./java-arquitectura-hexagonal/comun/build.gradle clean'
+					sh 'gradle --b ./java-arquitectura-hexagonal/comun/build.gradle build'
+		}
+	}
+          
+	stage('Compile & Unit Tests') {
+        steps {
+            echo "--------------->Unit Tests microservicio<--------"
+            sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle test'
+            sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle jacocoTestReport'
+						  
+			echo "--------------->Unit Tests microservicio comun<--------"
+            sh 'gradle --b ./java-arquitectura-hexagonal/comun/build.gradle test'
+            sh 'gradle --b ./java-arquitectura-hexagonal/comun/build.gradle jacocoTestReport'
+        }
+    }
+    
+	stage('Static Code Analysys'){
+        steps {
+            echo '----------------->Analisis de Código estático<-----------------'
+            withSonarQubeEnv('Sonar'){
+				sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+			}
+		}
+    }
 	
   }
 
@@ -64,7 +64,7 @@ pipeline {
       echo 'This will always run'
     }
     success {
-      echo 'This will run only if successful'
+      echo '----------->success<-----------'
     }
     failure {
       echo 'This will run only if failed'
