@@ -25,7 +25,7 @@ public class ManejadorCrearFurgon implements ManejadorComandoRespuesta<ComandoFu
 	public ComandoRespuesta<Long> ejecutar(ComandoFurgon comando) {
 
 		Furgon furgon = this.fabricaFurgon.crear(comando);
-		return new ComandoRespuesta<Long>(this.servicioCrearFurgon.ejecutar(furgon));
+		return new ComandoRespuesta<>(this.servicioCrearFurgon.ejecutar(furgon));
 	}
 
 	
