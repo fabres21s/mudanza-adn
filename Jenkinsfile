@@ -21,6 +21,18 @@ pipeline {
     stage('Checkout') {
       steps{
         echo "------------>Checkout ABC<------------"
+		checkout([
+				$class: 'GitSCM', 
+				branches: [[name: '*/master']], 
+				doGenerateSubmoduleConfigurations: false, 
+				extensions: [], 
+				gitTool: 'Git_Centos', 
+				submoduleCfg: [], 
+				userRemoteConfigs: [[
+				credentialsId: 'GitHub_fabio.sierra', 
+					url:'https://github.com/fabres21s/mudanza-adn'
+				]]
+			])
       }
     }
 
