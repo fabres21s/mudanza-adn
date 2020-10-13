@@ -1,5 +1,7 @@
 package com.ceiba.furgon.servicio;
 
+import java.time.LocalDateTime;
+
 import org.junit.Test;
 
 import com.ceiba.BasePrueba;
@@ -12,7 +14,7 @@ public class FurgonTest {
 	@Test
 	public void validarConstructorFurgon() {
 
-		BasePrueba.assertThrows(() -> new Furgon(1l, "ABC-1234"), ExcepcionPlacaInvalida.class,
+		BasePrueba.assertThrows(() -> new Furgon(1l, "ABC-1234", LocalDateTime.now()), ExcepcionPlacaInvalida.class,
 				"La placa no tiene un formato válido");
 
 	}
@@ -20,7 +22,7 @@ public class FurgonTest {
 	@Test
 	public void validarConstructorFurgon2() {
 
-		BasePrueba.assertThrows(() -> new Furgon(1l, null), ExcepcionValorObligatorio.class,
+		BasePrueba.assertThrows(() -> new Furgon(1l, null, LocalDateTime.now()), ExcepcionValorObligatorio.class,
 				"Se debe ingresar la placa del furgon");
 
 	}
