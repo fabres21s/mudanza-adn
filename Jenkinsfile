@@ -28,11 +28,11 @@ pipeline {
 		steps {
 			echo "------------>Building project microservicio<------------"
 				sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle clean'
-					sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle build'
+				sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle build'
 								
-					echo "------------>Building project comun<------------"
-					sh 'gradle --b ./java-arquitectura-hexagonal/comun/build.gradle clean'
-					sh 'gradle --b ./java-arquitectura-hexagonal/comun/build.gradle build'
+				echo "------------>Building project comun<------------"
+				sh 'gradle --b ./java-arquitectura-hexagonal/comun/build.gradle clean'
+				sh 'gradle --b ./java-arquitectura-hexagonal/comun/build.gradle build'
 		}
 	}
           
