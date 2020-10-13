@@ -20,7 +20,7 @@ pipeline {
   stages{
     stage('Checkout') {
       steps{
-        echo "------------>Checkout ABC<------------"
+        echo "------------>Checkout<------------"
 		checkout([
 				$class: 'GitSCM', 
 				branches: [[name: '*/master']], 

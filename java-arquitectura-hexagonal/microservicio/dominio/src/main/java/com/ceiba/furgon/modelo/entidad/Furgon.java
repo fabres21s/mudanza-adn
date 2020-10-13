@@ -22,5 +22,6 @@ public class Furgon {
     	validarPlaca(placa, LA_PLACA_NO_TIENE_UN_FORMATO_VALIDO);
     	this.id = id;
     	this.placa = placa;
+    	this.fechaCreacion = fechaCreacion;
     }
 }
