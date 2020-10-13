@@ -44,8 +44,8 @@ pipeline {
                               sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle jacocoTestReport'
 							  
 							  echo "--------------->Unit Tests microservicio comun<--------"
-                              sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle test'
-                              sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle jacocoTestReport'
+                              sh 'gradle --b ./java-arquitectura-hexagonal/comun/build.gradle test'
+                              sh 'gradle --b ./java-arquitectura-hexagonal/comun/build.gradle jacocoTestReport'
                            }
                         }
                         stage('Static Code Analysys'){
