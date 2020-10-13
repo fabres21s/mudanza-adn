@@ -16,8 +16,14 @@ public class RepositorioFurgonMysql implements RepositorioFurgon {
 	@SqlStatement(namespace = "furgon", value = "crear")
 	private static String sqlCrear;
 
+	@SqlStatement(namespace = "furgon", value = "actualizar")
+	private static String sqlActualizar;
+
 	@SqlStatement(namespace = "furgon", value = "existe")
 	private static String sqlExiste;
+
+	@SqlStatement(namespace = "furgon", value = "existeExcluyendoId")
+	private static String sqlExisteExcluyendoId;
 
 	public RepositorioFurgonMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
 		this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -34,7 +40,23 @@ public class RepositorioFurgonMysql implements RepositorioFurgon {
 
 	@Override
 	public Long crear(Furgon furgon) {
-		 return this.customNamedParameterJdbcTemplate.crear(furgon, sqlCrear);
+		return this.customNamedParameterJdbcTemplate.crear(furgon, sqlCrear);
+	}
+
+	@Override
+	public boolean existeExcluyendoId(Long id, String placa) {
+		MapSqlParameterSource paramSource = new MapSqlParameterSource();
+		paramSource.addValue("id", id);
+		paramSource.addValue("placa", placa);
+
+		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+				.queryForObject(sqlExisteExcluyendoId, paramSource, Boolean.class);
+	}
+
+	@Override
+	public void actualizar(Furgon furgon) {
+		this.customNamedParameterJdbcTemplate.actualizar(furgon, sqlActualizar);
+
 	}
 
 }

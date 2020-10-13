@@ -1,0 +1,1 @@
+select count(1) from furgon where id <> :id and placa = :placa

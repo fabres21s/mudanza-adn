@@ -1,6 +1,7 @@
 package com.ceiba.configuracion;
 
 import com.ceiba.furgon.puerto.repositorio.RepositorioFurgon;
+import com.ceiba.furgon.servicio.ServicioActualizarFurgon;
 import com.ceiba.furgon.servicio.ServicioCrearFurgon;
 import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
 import com.ceiba.usuario.servicio.ServicioActualizarUsuario;
@@ -32,5 +33,9 @@ public class BeanServicio {
     	return new ServicioCrearFurgon(repositorioFurgon);
     }
 	
+    @Bean
+    public ServicioActualizarFurgon servicioActualizarFurgon(RepositorioFurgon repositorioFurgon) {
+    	return new ServicioActualizarFurgon(repositorioFurgon);
+    }
 
 }
