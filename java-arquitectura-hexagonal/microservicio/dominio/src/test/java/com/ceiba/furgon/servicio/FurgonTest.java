@@ -11,11 +11,11 @@ import com.ceiba.furgon.modelo.entidad.Furgon;
 
 public class FurgonTest {
 
-/*	@Test
+	@Test
 	public void validarConstructorFurgon() {
 
 		BasePrueba.assertThrows(() -> new Furgon(1l, "ABC-1234", LocalDateTime.now()), ExcepcionPlacaInvalida.class,
-				"La placa no tiene un formato válido");
+				"La placa no tiene un formato valido");
 
 	}
 
@@ -25,5 +25,5 @@ public class FurgonTest {
 		BasePrueba.assertThrows(() -> new Furgon(1l, null, LocalDateTime.now()), ExcepcionValorObligatorio.class,
 				"Se debe ingresar la placa del furgon");
 
-	}*/
+	}
 }
