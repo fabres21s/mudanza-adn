@@ -1,0 +1,1 @@
+insert into furgon (placa) values (:placa)
