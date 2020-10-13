@@ -42,9 +42,6 @@ pipeline {
 				sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle clean'
 				sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle build'
 								
-				echo "------------>Building project comun<------------"
-				sh 'gradle --b ./java-arquitectura-hexagonal/comun/build.gradle clean'
-				sh 'gradle --b ./java-arquitectura-hexagonal/comun/build.gradle build'
 		}
 	}
           
@@ -53,10 +50,7 @@ pipeline {
             echo "--------------->Unit Tests microservicio<--------"
             sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle test'
             sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle jacocoTestReport'
-						  
-			echo "--------------->Unit Tests microservicio comun<--------"
-            sh 'gradle --b ./java-arquitectura-hexagonal/comun/build.gradle test'
-            sh 'gradle --b ./java-arquitectura-hexagonal/comun/build.gradle jacocoTestReport'
+
         }
     }
     
