@@ -12,7 +12,7 @@ public class ManejadorListarFurgon {
 
 	private final DaoFurgon daoFurgon;
 	
-	private ManejadorListarFurgon(DaoFurgon daoFurgon) {
+	public ManejadorListarFurgon(DaoFurgon daoFurgon) {
 		this.daoFurgon = daoFurgon;
 	}
 	
