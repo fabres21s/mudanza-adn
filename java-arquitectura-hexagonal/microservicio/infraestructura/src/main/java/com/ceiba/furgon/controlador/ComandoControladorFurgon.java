@@ -38,8 +38,7 @@ public class ComandoControladorFurgon {
 	
 	@PutMapping(value="/{id}")
 	@ApiOperation("Actualizar Furgon")
-	public void actualizar(@RequestBody ComandoFurgon comandoFurgon,@PathVariable Long id) {
-		comandoFurgon.setId(id);
+	public void actualizar(@RequestBody ComandoFurgon comandoFurgon, @PathVariable Long id) {
 		manejadorActulizarFurgon.ejecutar(comandoFurgon);
 	}
 }
