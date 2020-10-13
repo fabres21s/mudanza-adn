@@ -9,6 +9,6 @@ import com.ceiba.furgon.modelo.entidad.Furgon;
 public class FabricaFurgon {
 
 	public Furgon crear (ComandoFurgon comandoFurgon) {
-		return new Furgon(comandoFurgon.getId(), comandoFurgon.getPlaca(), comandoFurgon.getFechaCreacion());
+		return new Furgon(comandoFurgon.getId(), comandoFurgon.getPlaca());
 	}
 }
