@@ -47,9 +47,13 @@ pipeline {
           
 	stage('Compile & Unit Tests') {
         steps {
-            echo "--------------->Unit Tests microservicio<--------"
-            sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle test'
-            sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle jacocoTestReport'
+            echo "--------------->Unit Tests microservicio dominio<--------"
+            sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/dominio/build.gradle test'
+            sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/dominio/build.gradle jacocoTestReport'
+			
+			echo "--------------->Unit Tests microservicio infraestructura<--------"
+            sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/infraestructura/build.gradle test'
+            sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/infraestructura/build.gradle jacocoTestReport'
 
         }
     }
