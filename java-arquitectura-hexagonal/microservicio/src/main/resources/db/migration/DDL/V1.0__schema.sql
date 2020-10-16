@@ -32,16 +32,12 @@ create table tarifa(
 	porcentaje_recargo_nocturno double,
 	porcentaje_recargo_dominical double,
 	porcentaje_recargo_festivo double,
-	cantidad_trabajadores int,
-	porcentaje_trabajadores double,
-	cantidad_furgones int,
 	fecha_creacion datetime not null DEFAULT CURRENT_TIMESTAMP,
 	primary key (id)
 );
 
-insert into tarifa(nombre, fecha_inicial, fecha_final, valor, porcentaje_recargo_nocturno, porcentaje_recargo_dominical, porcentaje_recargo_festivo,
-cantidad_trabajadores, porcentaje_trabajadores, cantidad_furgones) 
-values ('Tarifa fin de año', '2020-10-01', '2020-12-31', 500000, 10, 15, 20, 3, 60, 1);
+insert into tarifa(nombre, fecha_inicial, fecha_final, valor, porcentaje_recargo_nocturno, porcentaje_recargo_dominical, porcentaje_recargo_festivo) 
+values ('Tarifa fin de año', '2020-10-01', '2020-12-31', 500000, 10, 15, 20);
 
 create table horario(
 	id int(11) not null auto_increment,
@@ -87,7 +83,7 @@ insert into furgon(placa) values ('ABC-123');
 
 create table mudanza(
 	id int(11) not null auto_increment,
-	fecha datetime not null,
+	fecha date not null,
 	tarifa_horario_id int,
 	furgon_id int,
 	tarifa_base double,
@@ -101,3 +97,6 @@ create table mudanza(
 	foreign key (tarifa_horario_id) references tarifa_horario(id),
 	foreign key (furgon_id) references furgon(id)
 );
+
+insert into mudanza (fecha, tarifa_horario_id, furgon_id, tarifa_base, recargo_nocturno, recargo_dominical, recargo_festivo, direccion_inicial, direccion_final)
+values ('2020-10-31', 1,1,500000,50000,30000,25000,'calle falsa 123', 'av siempre viva');
