@@ -1,16 +1,11 @@
 package com.ceiba.mudanza.servicio;
 
-import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import com.ceiba.dominio.excepcion.ExcepcionFurgonNoDisponible;
 import com.ceiba.dominio.excepcion.ExcepcionTarifarioNoConfigurado;
-import com.ceiba.mudanza.modelo.dto.DtoMudanza;
 import com.ceiba.mudanza.modelo.entidad.Mudanza;
 import com.ceiba.mudanza.puerto.repositorio.RepositorioMudanza;
 import com.ceiba.tarifario.modelo.dto.DtoTarifario;

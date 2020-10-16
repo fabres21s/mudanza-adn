@@ -1,11 +1,9 @@
 package com.ceiba.mudanza.modelo.entidad;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
-import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 import static com.ceiba.dominio.ValidadorArgumento.validarMenor;
+import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
+
+import java.time.LocalDate;
 
 import lombok.Getter;
 

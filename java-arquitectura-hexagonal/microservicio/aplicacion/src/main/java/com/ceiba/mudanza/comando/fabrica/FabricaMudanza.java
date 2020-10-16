@@ -2,7 +2,6 @@ package com.ceiba.mudanza.comando.fabrica;
 
 import org.springframework.stereotype.Component;
 
-import com.ceiba.furgon.modelo.entidad.Furgon;
 import com.ceiba.mudanza.comando.ComandoMudanza;
 import com.ceiba.mudanza.modelo.entidad.Mudanza;
 
