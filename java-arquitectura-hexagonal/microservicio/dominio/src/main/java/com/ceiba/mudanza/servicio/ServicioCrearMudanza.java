@@ -28,6 +28,7 @@ public class ServicioCrearMudanza {
 	
 	public Long ejecutar(Mudanza mudanza) {
 		
+		//TODO - Preguntar si es necesario validar la existencia del furgon
 		consultarDisponibilidadFurgon(mudanza.getFurgonId(), mudanza.getFecha(), mudanza.getTarifaHorarioId());
 		DtoTarifario tarifario =  consultarTarifario(mudanza.getFecha(), mudanza.getTarifaHorarioId());
 		asignarTarifas(mudanza, tarifario);

@@ -1,5 +1,6 @@
 package com.ceiba.furgon.consulta;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -18,5 +19,9 @@ public class ManejadorListarFurgon {
 	
 	public List<DtoFurgon> ejecutar() {
 		return this.daoFurgon.listar();
+	}
+
+	public List<DtoFurgon> consultarDisponibles(Long tarifaHorarioId, LocalDate fecha) {
+		return this.daoFurgon.consultarDisponibles(tarifaHorarioId, fecha);
 	}
 }
