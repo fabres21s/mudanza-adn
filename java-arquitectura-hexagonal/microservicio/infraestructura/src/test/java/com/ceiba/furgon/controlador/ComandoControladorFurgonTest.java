@@ -17,8 +17,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.ceiba.ApplicationMock;
 import com.ceiba.furgon.comando.ComandoFurgon;
 import com.ceiba.furgon.servicio.testdatabuilder.ComandoFurgonTestDataBuilder;
-import com.ceiba.usuario.comando.ComandoUsuario;
-import com.ceiba.usuario.servicio.testdatabuilder.ComandoUsuarioTestDataBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)

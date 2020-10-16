@@ -11,11 +11,9 @@ public class ComandoFurgonTestDataBuilder {
 
 	 	private Long id;
 	    private String placa;
-	    private LocalDateTime fecha;
 
 	    public ComandoFurgonTestDataBuilder() {
 	        placa = "XYZ-123";
-	        fecha = LocalDateTime.now();
 	    }
 
 	    public ComandoFurgonTestDataBuilder conPlaca(String placa) {
@@ -24,6 +22,6 @@ public class ComandoFurgonTestDataBuilder {
 	    }
 
 	    public ComandoFurgon build() {
-	        return new ComandoFurgon(id,placa,fecha);
+	        return new ComandoFurgon(id,placa);
 	    }
 }
