@@ -3,6 +3,8 @@ package com.ceiba.configuracion;
 import com.ceiba.furgon.puerto.repositorio.RepositorioFurgon;
 import com.ceiba.furgon.servicio.ServicioActualizarFurgon;
 import com.ceiba.furgon.servicio.ServicioCrearFurgon;
+import com.ceiba.mudanza.puerto.repositorio.RepositorioMudanza;
+import com.ceiba.mudanza.servicio.ServicioCrearMudanza;
 import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
 import com.ceiba.usuario.servicio.ServicioActualizarUsuario;
 import com.ceiba.usuario.servicio.ServicioCrearUsuario;
@@ -38,4 +40,8 @@ public class BeanServicio {
     	return new ServicioActualizarFurgon(repositorioFurgon);
     }
 
+    @Bean
+    public ServicioCrearMudanza servicioCrearMudanza(RepositorioMudanza repositorioMudanza) {
+    	return new ServicioCrearMudanza(repositorioMudanza);
+    }
 }
