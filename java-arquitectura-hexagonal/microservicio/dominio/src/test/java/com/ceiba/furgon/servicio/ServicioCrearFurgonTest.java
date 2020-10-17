@@ -1,5 +1,7 @@
 package com.ceiba.furgon.servicio;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -23,7 +25,7 @@ public class ServicioCrearFurgonTest {
 		
 		ServicioCrearFurgon servicioCrearFurgon = new ServicioCrearFurgon(repositorioFurgon);
 		//act-assert
-		BasePrueba.assertThrows(() ->  servicioCrearFurgon.ejecutar(furgon), ExcepcionDuplicidad.class, "La placa ingresada ya existe en el sistema");
+		 assertDoesNotThrow(()  ->  servicioCrearFurgon.ejecutar(furgon));
 		
 		
 	}
