@@ -36,7 +36,7 @@ public class MudanzaTest {
 
 		LocalDate tomorrow = LocalDate.now().plus(1, ChronoUnit.DAYS);
 		BasePrueba.assertThrows(() -> new Mudanza(1L, 1L, 1L, tomorrow, "CALLE FALSA", null),
-				ExcepcionValorInvalido.class, "Se debe ingresar una direccion final");
+				ExcepcionValorObligatorio.class, "Se debe ingresar una direccion final");
 
 	}
 	
