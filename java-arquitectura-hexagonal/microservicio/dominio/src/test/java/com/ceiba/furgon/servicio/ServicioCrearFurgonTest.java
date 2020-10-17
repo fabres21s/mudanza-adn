@@ -13,6 +13,22 @@ public class ServicioCrearFurgonTest {
 
 	
 	@Test
+	public void validarCreacionFurgon() {
+		//arrange
+		Furgon furgon = new FurgonTestDataBuilder().build();
+		
+		RepositorioFurgon repositorioFurgon = Mockito.mock(RepositorioFurgon.class);
+		Mockito.when(repositorioFurgon.existe(Mockito.anyString())).thenReturn(false);
+		Mockito.when(repositorioFurgon.crear(Mockito.any())).thenReturn(1l);
+		
+		ServicioCrearFurgon servicioCrearFurgon = new ServicioCrearFurgon(repositorioFurgon);
+		//act-assert
+		BasePrueba.assertThrows(() ->  servicioCrearFurgon.ejecutar(furgon), ExcepcionDuplicidad.class, "La placa ingresada ya existe en el sistema");
+		
+		
+	}
+	
+	@Test
 	public void validarExistenciaPreviaTest() {
 		//arrange
 		Furgon furgon = new FurgonTestDataBuilder().build();
