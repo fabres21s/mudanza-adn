@@ -6,8 +6,10 @@ import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 import java.time.LocalDate;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class Mudanza {
 
 	private static final String SE_DEBE_SELECCIONAR_UN_FURGON = "Se debe seleccionar un furgon";
@@ -42,37 +44,5 @@ public class Mudanza {
 		this.fecha = fecha;
 		this.direccionInicial = direccionInicial;
 		this.direccionFinal = direccionFinal;
-	}
-	
-	public Double getTarifaBase() {
-		return tarifaBase;
-	}
-
-	public void setTarifaBase(Double tarifaBase) {
-		this.tarifaBase = tarifaBase;
-	}
-
-	public Double getRecargoNocturno() {
-		return recargoNocturno;
-	}
-
-	public void setRecargoNocturno(Double recargoNocturno) {
-		this.recargoNocturno = recargoNocturno;
-	}
-
-	public Double getRecargoDominical() {
-		return recargoDominical;
-	}
-
-	public void setRecargoDominical(Double recargoDominical) {
-		this.recargoDominical = recargoDominical;
-	}
-
-	public Double getRecargoFestivo() {
-		return recargoFestivo;
-	}
-
-	public void setRecargoFestivo(Double recargoFestivo) {
-		this.recargoFestivo = recargoFestivo;
 	}
 }
