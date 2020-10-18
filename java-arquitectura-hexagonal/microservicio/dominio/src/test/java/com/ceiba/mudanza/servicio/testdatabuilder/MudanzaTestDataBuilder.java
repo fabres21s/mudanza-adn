@@ -1,7 +1,10 @@
 package com.ceiba.mudanza.servicio.testdatabuilder;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.TemporalAdjusters;
 
 import com.ceiba.mudanza.modelo.entidad.Mudanza;
 
@@ -20,6 +23,16 @@ public class MudanzaTestDataBuilder {
 		this.fecha = LocalDate.now().plus(1, ChronoUnit.DAYS);
 		this.direccionInicial = "CALLE FALSA";
 		this.direccionFinal = "CALLE REAL";
+	}
+	
+	public MudanzaTestDataBuilder proximoDia(DayOfWeek dayOfWeek) {
+		
+		this.furgonId = 1l;
+		this.tarifaHorarioId = 1l;
+		this.fecha = LocalDate.now().with(TemporalAdjusters.next(dayOfWeek));;
+		this.direccionInicial = "CALLE FALSA";
+		this.direccionFinal = "CALLE REAL";
+		return this;
 	}
 	
 	public Mudanza build() {

@@ -10,6 +10,7 @@ import com.ceiba.dominio.excepcion.ExcepcionTarifarioNoConfigurado;
 import com.ceiba.furgon.puerto.repositorio.RepositorioFurgon;
 import com.ceiba.mudanza.modelo.entidad.Mudanza;
 import com.ceiba.mudanza.puerto.repositorio.RepositorioMudanza;
+import com.ceiba.mudanza.utils.Utils;
 import com.ceiba.tarifario.modelo.dto.DtoTarifario;
 
 public class ServicioCrearMudanza {
@@ -20,59 +21,23 @@ public class ServicioCrearMudanza {
 	
 	private final RepositorioMudanza repositorioMudanza;
 	private final RepositorioFurgon repositorioFurgon;
+	private Utils utils;
 	
 	public ServicioCrearMudanza(RepositorioMudanza repositorioMudanza, RepositorioFurgon repositorioFurgon) {
 		this.repositorioMudanza = repositorioMudanza;
 		this.repositorioFurgon = repositorioFurgon;
+		this.utils = new Utils();
 	}
 	
 	public Long ejecutar(Mudanza mudanza) {
 		validarExistenciaFurgon(mudanza.getFurgonId());
 		consultarDisponibilidadFurgon(mudanza.getFurgonId(), mudanza.getFecha(), mudanza.getTarifaHorarioId());
 		DtoTarifario tarifario =  consultarTarifario(mudanza.getFecha(), mudanza.getTarifaHorarioId());
-		asignarTarifas(mudanza, tarifario);
+		utils.asignarTarifas(mudanza, tarifario);
 		
 		return this.repositorioMudanza.crear(mudanza);
 	}
 	
-	private void asignarTarifas(Mudanza mudanza, DtoTarifario tarifario) {
-		asignarTarifaBase(mudanza, tarifario.getTarifaBase());
-		asignarRecargoNocturno(mudanza, tarifario);
-		asignarRecargoDominical(mudanza, tarifario);
-		asignarRecargoFestivo(mudanza, tarifario);
-	}
-
-	private void asignarRecargoFestivo(Mudanza mudanza, DtoTarifario tarifario) {
-		if (tarifario.getEsFestivo()) {
-			mudanza.setRecargoFestivo(tarifario.getTarifaBase() * tarifario.getPorcentajeRecargoFestivo() / 100);
-		} else {
-			mudanza.setRecargoFestivo(0.0);
-		}
-		
-	}
-
-	private void asignarRecargoDominical(Mudanza mudanza, DtoTarifario tarifario) {
-		if (mudanza.getFecha().getDayOfWeek() == DayOfWeek.SUNDAY) {
-			mudanza.setRecargoDominical(tarifario.getTarifaBase() * tarifario.getPorcentajeRecargoDominical() / 100);
-		} else {
-			mudanza.setRecargoDominical(0.0);
-		}
-		
- 	}
-
-	private void asignarRecargoNocturno(Mudanza mudanza, DtoTarifario tarifario) {
-		if (tarifario.getRecargoNocturno()) {
-			mudanza.setRecargoNocturno(tarifario.getTarifaBase() * tarifario.getPorcentajeRecargoNocturno() / 100);
-		} else {
-			mudanza.setRecargoNocturno(0.0);
-		}
-		
-	}
-
-	private void asignarTarifaBase(Mudanza mudanza, Double tarifaBase) {
-		mudanza.setTarifaBase(tarifaBase);
-	}
-
 	private void consultarDisponibilidadFurgon(Long furgonId, LocalDate fecha, Long tarifaHorarioId) {
 		
 		boolean ocupado = this.repositorioMudanza.consultarDisponibilidadFurgon(furgonId, fecha, tarifaHorarioId);
