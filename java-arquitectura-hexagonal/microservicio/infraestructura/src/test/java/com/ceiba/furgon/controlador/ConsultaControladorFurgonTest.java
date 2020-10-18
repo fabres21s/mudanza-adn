@@ -36,6 +36,36 @@ public class ConsultaControladorFurgonTest {
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].placa", is("ABC-123")));
     }
+    
+    @Test
+    public void listarDisponiblesNoEncuentra() throws Exception {
+        // arrange
+    	Long tarifaHorarioId = 1l;
+    	String fecha = "2020-10-31";
+    	
+    	
+        // act - assert
+        mocMvc.perform(get("/furgones/disponibles/{id}/{fecha}", tarifaHorarioId, fecha)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(0)))
+               ;
+    }
+    
+    @Test
+    public void listarDisponiblesSiEncuentra() throws Exception {
+        // arrange
+    	Long tarifaHorarioId = 1l;
+    	String fecha = "2020-10-30";
+    	
+    	
+        // act - assert
+        mocMvc.perform(get("/furgones/disponibles/{id}/{fecha}", tarifaHorarioId, fecha)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].placa", is("ABC-123")));
+    }
 
 
 }
