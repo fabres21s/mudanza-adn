@@ -11,6 +11,11 @@ public class FurgonTestDataBuilder {
 		placa = "ABC-123";
 	}
 	
+    public FurgonTestDataBuilder conId(Long id) {
+        this.id = id;
+        return this;
+    }
+	
 	public Furgon build() {
 		return new Furgon(id, placa);
 	}
