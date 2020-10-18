@@ -41,7 +41,7 @@ public class BeanServicio {
     }
 
     @Bean
-    public ServicioCrearMudanza servicioCrearMudanza(RepositorioMudanza repositorioMudanza) {
-    	return new ServicioCrearMudanza(repositorioMudanza);
+    public ServicioCrearMudanza servicioCrearMudanza(RepositorioMudanza repositorioMudanza, RepositorioFurgon repositorioFurgon) {
+    	return new ServicioCrearMudanza(repositorioMudanza, repositorioFurgon);
     }
 }

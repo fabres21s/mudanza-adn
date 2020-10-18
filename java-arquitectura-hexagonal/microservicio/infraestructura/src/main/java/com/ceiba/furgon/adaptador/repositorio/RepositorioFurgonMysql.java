@@ -21,6 +21,9 @@ public class RepositorioFurgonMysql implements RepositorioFurgon {
 
 	@SqlStatement(namespace = "furgon", value = "existe")
 	private static String sqlExiste;
+	
+	@SqlStatement(namespace = "furgon", value = "existePorId")
+	private static String sqlExistePorId;
 
 	@SqlStatement(namespace = "furgon", value = "existeExcluyendoId")
 	private static String sqlExisteExcluyendoId;
@@ -57,6 +60,15 @@ public class RepositorioFurgonMysql implements RepositorioFurgon {
 	public void actualizar(Furgon furgon) {
 		this.customNamedParameterJdbcTemplate.actualizar(furgon, sqlActualizar);
 
+	}
+
+	@Override
+	public boolean existe(Long id) {
+		MapSqlParameterSource paramSource = new MapSqlParameterSource();
+		paramSource.addValue("id", id);
+
+		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExistePorId,
+				paramSource, Boolean.class);
 	}
 
 }

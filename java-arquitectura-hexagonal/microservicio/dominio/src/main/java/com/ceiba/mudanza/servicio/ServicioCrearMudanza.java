@@ -5,7 +5,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.ceiba.dominio.excepcion.ExcepcionFurgonNoDisponible;
+import com.ceiba.dominio.excepcion.ExcepcionFurgonNoExiste;
 import com.ceiba.dominio.excepcion.ExcepcionTarifarioNoConfigurado;
+import com.ceiba.furgon.puerto.repositorio.RepositorioFurgon;
 import com.ceiba.mudanza.modelo.entidad.Mudanza;
 import com.ceiba.mudanza.puerto.repositorio.RepositorioMudanza;
 import com.ceiba.tarifario.modelo.dto.DtoTarifario;
@@ -13,17 +15,19 @@ import com.ceiba.tarifario.modelo.dto.DtoTarifario;
 public class ServicioCrearMudanza {
 	
 	private static final String EL_FURGON_NO_ESTA_DISPONIBLE_PARA_ESA_FECHA = "El furgon no esta disponible para esa fecha";
+	private static final String EL_FURGON_NO_EXISTE = "El furgon seleccionado no existe";
 	private static final String EL_TARIFARIO_NO_SE_ENCUENTRA_CORRECTAMENTE_CONFIGURADO = "El tarifario no se encuentra correctamente configurado para esa fecha";
 	
 	private final RepositorioMudanza repositorioMudanza;
+	private final RepositorioFurgon repositorioFurgon;
 	
-	public ServicioCrearMudanza(RepositorioMudanza repositorioMudanza) {
+	public ServicioCrearMudanza(RepositorioMudanza repositorioMudanza, RepositorioFurgon repositorioFurgon) {
 		this.repositorioMudanza = repositorioMudanza;
+		this.repositorioFurgon = repositorioFurgon;
 	}
 	
 	public Long ejecutar(Mudanza mudanza) {
-		System.out.println();
-		//TODO - Preguntar si es necesario validar la existencia del furgon
+		validarExistenciaFurgon(mudanza.getFurgonId());
 		consultarDisponibilidadFurgon(mudanza.getFurgonId(), mudanza.getFecha(), mudanza.getTarifaHorarioId());
 		DtoTarifario tarifario =  consultarTarifario(mudanza.getFecha(), mudanza.getTarifaHorarioId());
 		asignarTarifas(mudanza, tarifario);
@@ -78,6 +82,14 @@ public class ServicioCrearMudanza {
 		}
 	}
 	
+	private void validarExistenciaFurgon(Long furgonId) {
+		boolean existe = this.repositorioFurgon.existe(furgonId);
+		
+		if (!existe) {
+			throw new ExcepcionFurgonNoExiste(EL_FURGON_NO_EXISTE);
+		}
+	}
+	
 	private DtoTarifario consultarTarifario(LocalDate fecha, Long tarifaHorarioId) {
 		List<DtoTarifario> list = this.repositorioMudanza.consultarTarifario(fecha, tarifaHorarioId);
 		
@@ -87,6 +99,8 @@ public class ServicioCrearMudanza {
 		
 		return list.get(0);
 	}
+	
+	
 	
 
 }

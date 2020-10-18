@@ -35,4 +35,6 @@ public interface RepositorioFurgon {
 	 */
 	void actualizar(Furgon furgon);
 
+	boolean existe(Long furgonId);
+
 }
