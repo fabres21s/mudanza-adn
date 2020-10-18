@@ -12,7 +12,6 @@ import com.ceiba.furgon.puerto.repositorio.RepositorioFurgon;
 import com.ceiba.furgon.servicio.testdatabuilder.FurgonTestDataBuilder;
 
 public class ServicioCrearFurgonTest {
-
 	
 	@Test
 	public void validarCreacionFurgon() {

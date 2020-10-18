@@ -22,7 +22,7 @@ public class ServicioCrearMudanza {
 	}
 	
 	public Long ejecutar(Mudanza mudanza) {
-		
+		System.out.println();
 		//TODO - Preguntar si es necesario validar la existencia del furgon
 		consultarDisponibilidadFurgon(mudanza.getFurgonId(), mudanza.getFecha(), mudanza.getTarifaHorarioId());
 		DtoTarifario tarifario =  consultarTarifario(mudanza.getFecha(), mudanza.getTarifaHorarioId());
@@ -71,7 +71,6 @@ public class ServicioCrearMudanza {
 
 	private void consultarDisponibilidadFurgon(Long furgonId, LocalDate fecha, Long tarifaHorarioId) {
 		
-		System.out.println(furgonId+ ":: "+fecha+" :: "+tarifaHorarioId);
 		boolean ocupado = this.repositorioMudanza.consultarDisponibilidadFurgon(furgonId, fecha, tarifaHorarioId);
 		
 		if (ocupado) {
